@@ -1,0 +1,32 @@
+/* Styling card start  */
+.card
+{
+   width: 200px;
+   height: 300px;
+}
+/* styling card end  */
+
+
+/* styling header of news card */
+/* Start */
+.head
+{
+    padding : 10px 10px 0 10px ;
+    display : flex;
+    justify-content : space-between;
+    
+
+}
+.head h5{
+    font-size: 13px;
+    font-family: serif;
+    font-weight: bold;
+}
+.head p 
+{
+    font-family: serif;
+    font-size: 13px;
+    font-weight: lighter;
+    color : blue;
+}
+/* END */

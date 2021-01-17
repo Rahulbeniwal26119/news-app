@@ -1,0 +1,22 @@
+/* making a card for news fetched */
+/* Start */
+.news-card-main
+{
+    font-family: serif;
+    background-color: #fff;
+    width : 400px;
+    border-radius: 4px;
+    box-shadow: 4px 1px 1px #fff;
+}
+.news-title
+{
+    display: flex;
+    font-weight: bolder;
+    font-family: serif;
+    justify-content : space-between;
+}
+.reference
+{
+    font-weight: bolder;
+}
+/* END */
