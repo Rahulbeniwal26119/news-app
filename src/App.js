@@ -1,36 +1,47 @@
 import React from 'react';
 import {Header, FilterNews, NewsFeed} from './components'
 import './App.css';
-
+import axios from 'axios';
 class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedOption: {
                 language: "",
                 country: "",
                 startDate: "",
-                endDate: ""
-            }
+                endDate: "",
+                fetchNews : []
         }
         this.urlToken =  "iLE8hxgNBYr68Uwtg74wKEMdy7qv0XZ643dwp3uubbrZOxwa";
     }
 
     getOptions = (language, country, startDate, endDate) => {
         this.setState({
-            selectedOption: {
                 language: language,
                 country: country,
                 startDate: startDate,
-                endDate: endDate
-            }
+                endDate: endDate,
+                fetchNews : []
         })
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        console.log("loading")
+        axios.get(`https://api.currentsapi.services/v1/latest-news?apiKey=${this.urlToken}`).then(response => {
+            this.setState(prevState => {
+                return {
+                    language: prevState.language,
+                    country: prevState.country,
+                    startDate : prevState.startDate,
+                    endDate : prevState.endDate,
+                    fetchedNews : response.data.news
+                }
+            })
+        })
+    }
 
     render() {
-        console.log(this.state.selectedOption)
+        console.log(this.state)
         return (
             <div className="container-fluid app">
                 {/*  creating a layout of ui */}
@@ -45,7 +56,7 @@ class App extends React.Component {
                                 this.getOptions
                             }/> {/* aligning filter news and Newsfeed component side by side */} </div>
                         <div className="newsCard ml-sm-5 ">
-                            <NewsFeed/>
+                            <NewsFeed newsData={this.state.fetchedNews ? this.state.fetchedNews : ""}/>
                         </div>
                     </div>
                 </div>
