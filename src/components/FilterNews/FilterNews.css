@@ -1,21 +1,19 @@
 /* Styling card start  */
 .card
 {
-   width: 200px;
-   height: 300px;
+   width: 250px;
 }
-/* styling card end  */
 
 
-/* styling header of news card */
-/* Start */
+.content {
+    padding : 10px 10px 0 10px ;
+
+}
 .head
 {
-    padding : 10px 10px 0 10px ;
     display : flex;
-    justify-content : space-between;
-    
-
+    justify-content : space-between;  
+    border-bottom : 1px solid rgb(218, 207, 207);
 }
 .head h5{
     font-size: 13px;
@@ -28,5 +26,33 @@
     font-size: 13px;
     font-weight: lighter;
     color : blue;
+
 }
 /* END */
+.select-box , label
+{
+    font-family: serif;
+    font-size: smaller;
+}
+label
+{
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+input[type="date"] , .btn-submit
+{
+    width: 100%;
+}
+select
+{
+    display : block;
+    width : 100%;
+    font-weight: bolder;
+    appearance: none;
+    background : rgba(179, 174, 174 , 0.7);
+    border-radius : 8px;
+}
+.news-div
+{
+    /* position: fixed; */
+}
