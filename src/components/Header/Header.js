@@ -5,7 +5,7 @@ import './Header.css';
 export default function Header(props)  /// exporting Header component 
 {
 return (
-    <div>    {/* bootstrap classes , bootstrap is included in index.js*/}    
+    <div className="button">    {/* bootstrap classes , bootstrap is included in index.js*/}    
     <Button id="refresh-button" className="btn-primary">Show Latest News</Button>
     </div>
 )
