@@ -1,108 +1,64 @@
 import './NewsFeed.css'; // style sheet for NewsFeed
 
-function NewsFeed() {
+function NewsFeed(props) {
+    if (props.newsData) {
+
+        var newsData = props.newsData;
+        var newsCard = newsData.map(newsCard => {
+            return (
+                <div key={
+                        newsCard.id
+                    }
+                    className="news-card-element mt-4">
+                    {/* news card component  */}
+                    <div className="news-title">
+                        {/* news card title*/}
+                        <p>{
+                            newsCard.title
+                        }</p>
+                        <p>&times;</p>
+                        {/* cross symbol*/} </div>
+                    <div className="text-muted mb-2">
+                        {/* author name && date */}
+                        <span className="author-name">
+                            {
+                            newsCard.author
+                        }</span>
+                        <span>
+                            &nbsp;|&nbsp;
+                        </span>
+                        <span className="publish-date">
+                            {
+                            newsCard.published
+                        }</span>
+                    </div>
+                    <div className="image">
+                        {/* image for news*/}
+                        <div className="left-image">
+                        <img src={newsCard.image} alt="news">
+                        </img> 
+                        </div>
+                        <div className="pl-3 right"> 
+                        <p className="news-description">
+                        {
+                            newsCard.description
+                        }
+                        </p>
+                            <p className="links">
+                            <span className="reference">Reference</span>
+                            <br/> 
+                            <a href={newsCard.url}>
+                            {newsCard.url}
+                            </a>
+                            </p>
+                            </div>
+                    </div>
+                </div>
+            )
+        })
+    }
     return (
-        <div>
-            <div className="news-card-main mt-4">
-                {/* news card component  */}
-                <div className="news-title">
-                    {/* news card title*/}
-                    <p>Bogus Title</p>
-                    <p>&times;</p>
-                    {/* cross symbol*/} </div>
-                <div className="text-muted">
-                    {/* author name && date */}
-                    <span className="author-name">Author Name</span>
-                    <span>
-                        |
-                    </span>
-                    <span className="publish-date">26-02-19</span>
-                </div>
-                <div className="image">
-                    {/* image for news*/}
-                    <a href="www.google.com">
-                        image link
-                    </a>
-                </div>
-                <div className="news-description">
-                    {/* news decription */}
-                    helljfdsjkl;fds fdsklj;fdsajkl;fdasjka;fds
-                </div>
-                <div className="reference">Reference</div>
-                <div className="url">
-                    {/* reference for total news*/}
-                    <a href="www.google.com">
-                        image url
-                    </a>
-                </div>
-            </div>
-            <div className="news-card-main mt-4">
-                {/* news card component  */}
-                <div className="news-title">
-                    {/* news card title*/}
-                    <p>Bogus Title</p>
-                    <p>&times;</p>
-                    {/* cross symbol*/} </div>
-                <div className="text-muted">
-                    {/* author name && date */}
-                    <span className="author-name">Author Name</span>
-                    <span>
-                        |
-                    </span>
-                    <span className="publish-date">26-02-19</span>
-                </div>
-                <div className="image">
-                    {/* image for news*/}
-                    <a href="www.google.com">
-                        image link
-                    </a>
-                </div>
-                <div className="news-description">
-                    {/* news decription */}
-                    helljfdsjkl;fds fdsklj;fdsajkl;fdasjka;fds
-                </div>
-                <div className="reference">Reference</div>
-                <div className="url">
-                    {/* reference for total news*/}
-                    <a href="www.google.com">
-                        image url
-                    </a>
-                </div>
-            </div>
-             <div className="news-card-main mt-4">
-                {/* news card component  */}
-                <div className="news-title">
-                    {/* news card title*/}
-                    <p>Bogus Title</p>
-                    <p>&times;</p>
-                    {/* cross symbol*/} </div>
-                <div className="text-muted">
-                    {/* author name && date */}
-                    <span className="author-name">Author Name</span>
-                    <span>
-                        |
-                    </span>
-                    <span className="publish-date">26-02-19</span>
-                </div>
-                <div className="image">
-                    {/* image for news*/}
-                    <a href="www.google.com">
-                        image link
-                    </a>
-                </div>
-                <div className="news-description">
-                    {/* news decription */}
-                    helljfdsjkl;fds fdsklj;fdsajkl;fdasjka;fds
-                </div>
-                <div className="reference">Reference</div>
-                <div className="url">
-                    {/* reference for total news*/}
-                    <a href="www.google.com">
-                        image url
-                    </a>
-                </div>
-            </div>
-        </div>
+        <div className="news-card-all"> {newsCard} </div>
     )
 }
 export default NewsFeed;
