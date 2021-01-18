@@ -3,25 +3,31 @@ import {Header, FilterNews, NewsFeed} from './components'
 import './App.css';
 
 class App extends React.Component {
-
-    state = {
-        selectedOption: {
-            language: "",
-            country: "",
-            startDate: "",
-            endDate: ""
-        },
-        dataFetched: "",
-        urlToken: "iLE8hxgNBYr68Uwtg74wKEMdy7qv0XZ643dwp3uubbrZOxwa"
+    constructor() {
+        super();
+        this.state = {
+            selectedOption: {
+                language: "",
+                country: "",
+                startDate: "",
+                endDate: ""
+            }
+        }
+        this.urlToken =  "iLE8hxgNBYr68Uwtg74wKEMdy7qv0XZ643dwp3uubbrZOxwa";
     }
-
 
     getOptions = (language, country, startDate, endDate) => {
-        this.setState({selectedOption : {language: language, country: country, startDate: startDate, endDate: endDate}})
+        this.setState({
+            selectedOption: {
+                language: language,
+                country: country,
+                startDate: startDate,
+                endDate: endDate
+            }
+        })
     }
 
-    componentDidMount() {
-    }
+    componentDidMount() {}
 
     render() {
         console.log(this.state.selectedOption)
