@@ -4,9 +4,14 @@ import {Button} from 'reactstrap';  // button component
 import './Header.css';
 export default function Header(props)  /// exporting Header component 
 {
+    function onClickHandler()
+    {
+        console.log("clicked");
+        props.latestNews();
+    }
 return (
     <div className="button">    {/* bootstrap classes , bootstrap is included in index.js*/}    
-    <Button id="refresh-button" className="btn-primary">Show Latest News</Button>
+    <Button id="refresh-button" className="btn-primary" onClick={onClickHandler}>Show Latest News</Button>
     </div>
 )
 }
