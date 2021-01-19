@@ -7,6 +7,7 @@ export default function FilterNews(props) {
     var [country, setCountry] = useState("");
     var [startDate, setStartDate] = useState("");
     var [endDate, setEndDate] = useState("");
+    var [overWrite, setOverWrite] = useState(false);
 
     function handleChange(e) {
         var value = e.target.value;
@@ -22,9 +23,18 @@ export default function FilterNews(props) {
     }
 
     function handleClick(e) {
+        setOverWrite(true);
         e.preventDefault();
-        props.getOptions(language, country, startDate, endDate);
+        props.getOptions(language, country, startDate, endDate)
         props.reRender(country , language);
+    }
+    console.log(props.buttonStatus);
+    console.log(overWrite);
+    if(props.buttonStatus && overWrite)
+    {
+        setOverWrite(false);
+     setLanguage("")   
+     setCountry("")   
     }
     return (
         <div className="news-div mt-4 ml-0">
@@ -39,7 +49,7 @@ export default function FilterNews(props) {
                         <form>
                             <div className="form-group">
                                 <label htmlFor="" className="col-form-label text-secondary">Language</label>
-                                <select className="form-select form-select-lg text-secondry"
+                                <select value={language} className="form-select form-select-lg text-secondry"
                                     onChange={handleChange}
                                     name="language">
                                     <option select="true" value="">select</option>
@@ -64,7 +74,7 @@ export default function FilterNews(props) {
                             </div>
                             <div className="form-group mt-0">
                                 <label className="col-form-label text-secondary">Country</label>
-                                <select className="form-select form-select-lg text-secondry" name="country"
+                                <select value={country} className="form-select form-select-lg text-secondry" name="country"
                                     onChange={handleChange}>
                                     <option select="true" value="">select</option>
                                     <option value="ASIA">Asia</option>
