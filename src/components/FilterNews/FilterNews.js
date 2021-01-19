@@ -24,6 +24,7 @@ export default function FilterNews(props) {
     function handleClick(e) {
         e.preventDefault();
         props.getOptions(language, country, startDate, endDate);
+        props.reRender(country , language);
     }
     return (
         <div className="news-div mt-4 ml-0">
