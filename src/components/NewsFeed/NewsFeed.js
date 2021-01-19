@@ -1,7 +1,8 @@
 import './NewsFeed.css'; // style sheet for NewsFeed
 
 function NewsFeed(props) {
-    if (props.newsData) {
+    console.log(props.newsData)
+    if (props.newsData.length) {
 
         var newsData = props.newsData;
         var newsCard = newsData.map(newsCard => {
@@ -35,30 +36,45 @@ function NewsFeed(props) {
                     <div className="image">
                         {/* image for news*/}
                         <div className="left-image">
-                        <img src={newsCard.image} alt="news">
-                        </img> 
+                            <img src={
+                                    newsCard.image
+                                }
+                                alt="news"></img>
                         </div>
-                        <div className="pl-3 right"> 
-                        <p className="news-description">
-                        {
-                            newsCard.description
-                        }
-                        </p>
+                        <div className="pl-3 right">
+                            <p className="news-description">
+                                {
+                                newsCard.description
+                            } </p>
                             <p className="links">
-                            <span className="reference">Reference</span>
-                            <br/> 
-                            <a href={newsCard.url}>
-                            {newsCard.url}
-                            </a>
+                                <span className="reference">Reference</span>
+                                <br/>
+                                <a href={
+                                    newsCard.url
+                                }>
+                                    {
+                                    newsCard.url
+                                } </a>
                             </p>
-                            </div>
+                        </div>
                     </div>
                 </div>
             )
         })
+    } else {
+        newsCard = <div key={"no-news"}
+            className="news-card-element mt-4">
+            {/* news card component  */}
+            <div className="news-title">
+                <p>
+                    no news found for this selected Country and Language , Try other combination
+                </p>
+            </div>
+        </div>
     }
     return (
-        <div className="news-card-all"> {newsCard} </div>
+        <div className="news-card-all">
+            {newsCard} </div>
     )
 }
 export default NewsFeed;
