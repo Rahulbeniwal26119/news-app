@@ -12,7 +12,26 @@ class App extends React.Component {
                 endDate: "",
                 fetchNews : []
         }
-        this.urlToken =  "iLE8hxgNBYr68Uwtg74wKEMdy7qv0XZ643dwp3uubbrZOxwa";
+        this.loading = true;
+        this.urlToken =  "WY4oDcSkQmhB583VJkchnKszhoWUL3bzi9mHRcBkPssA0yGQ";
+        this.url = ``
+    }
+
+    getLatest = ()=>{
+        console.log("in get latest");
+        this.url = `https://api.currentsapi.services/v1/latest-news?apiKey=${this.urlToken}`;
+        axios.get(this.url).then(response => {
+            this.setState(prevState => {
+                
+                return {
+                    language: "",
+                    country: "",
+                    startDate : "",
+                    endDate : "",
+                    fetchedNews : response.data.news
+                }
+            })
+        })
     }
 
     getOptions = (language, country, startDate, endDate) => {
@@ -25,9 +44,13 @@ class App extends React.Component {
         })
     }
 
-    componentDidMount() {
-        console.log("loading")
-        axios.get(`https://api.currentsapi.services/v1/latest-news?apiKey=${this.urlToken}`).then(response => {
+    
+    
+    getNews = (country , language)=>{
+        // https://api.currentsapi.services/v1/latest-news?apiKey=${this.urlToken}`
+        this.url = `https://api.currentsapi.services/v1/search?country=${country}&language=${language}&apiKey=${this.urlToken}`;
+        console.log(this.url)
+        axios.get(this.url).then(response => {
             this.setState(prevState => {
                 return {
                     language: prevState.language,
@@ -40,23 +63,32 @@ class App extends React.Component {
         })
     }
 
+    componentDidMount() {
+        this.getLatest();
+        this.loading = false;
+    }
+    
     render() {
-        console.log(this.state)
+        // this.getLatest();
+        // console.log(this.state)
+        // console.log(this.url)
         return (
             <div className="container-fluid app">
                 {/*  creating a layout of ui */}
                 <div className="row header">
                     <div className="offset-md-2">
-                        <Header/> {/* aligning show latest news button*/} </div>
+                        <Header latestNews={this.getLatest}/> {/* aligning show latest news button*/} </div>
                 </div>
                 <div className="">
                     <div className="row">
                         <div className="filterNews offset-md-2">
                             <FilterNews getOptions={
                                 this.getOptions
-                            }/> {/* aligning filter news and Newsfeed component side by side */} </div>
+                            } reRender = {this.getNews}/> {/* aligning filter news and Newsfeed component side by side */} </div>
                         <div className="newsCard ml-sm-5 ">
-                            <NewsFeed newsData={this.state.fetchedNews ? this.state.fetchedNews : ""}/>
+                            {
+                                this.loading ? <div> <img src={require("./components/loading.svg").default} alt=""/>  </div> : <NewsFeed newsData={this.state.fetchedNews ? this.state.fetchedNews : ""}/>
+                            }
                         </div>
                     </div>
                 </div>
