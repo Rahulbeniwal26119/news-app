@@ -1,10 +1,18 @@
 import './NewsFeed.css'; // style sheet for NewsFeed
 
+
+
+
 function NewsFeed(props) {
+function onClickHandler(index) {
+    console.log("clicked");
+    props.removeNews(index);
+}
+
     if (props.newsData.length) {
 
         var newsData = props.newsData;
-        var newsCard = newsData.map(newsCard => {
+        var newsCard = newsData.map((newsCard , index) => {
             return (
                 <div key={
                         newsCard.id
@@ -16,7 +24,7 @@ function NewsFeed(props) {
                         <p>{
                             newsCard.title
                         }</p>
-                        <p>&times;</p>
+                        <p className="cross" onClick={()=>onClickHandler(index)}>&times;</p>
                         {/* cross symbol*/} </div>
                     <div className="text-muted mb-2">
                         {/* author name && date */}

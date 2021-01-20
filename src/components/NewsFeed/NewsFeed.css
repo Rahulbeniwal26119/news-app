@@ -60,4 +60,8 @@ margin-left: 10px;
     overflow-x: hidden;
     overflow-y: auto;
 }
+.cross
+{
+    cursor: pointer;
+}
 /* END */
