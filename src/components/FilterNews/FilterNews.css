@@ -4,6 +4,7 @@
 .card
 {
    width: 250px;
+   font-family: serif;
 }
 
 .content {
@@ -17,21 +18,19 @@
     border-bottom : 1px solid rgb(218, 207, 207);
 }
 .head h5{
-    font-size: 13px;
-    font-family: serif;
+    font-size: 15px;
     font-weight: bold;
+    letter-spacing : 0.6px;
 }
 .head p 
 {
-    font-family: serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: lighter;
-    color : blue;
+    color : rgb(54, 54, 206);
 
 }
 .select-box , label
 {
-    font-family: serif;
     font-size: smaller;
 }
 label
@@ -47,13 +46,37 @@ select
 {
     display : block;
     width : 100%;
-    font-weight: bolder;
+    height : 30px;
+    font-weight: bold;
     appearance: none;
-    background : rgba(179, 174, 174 , 0.7);
+    background : rgba(206, 203, 203, 0.7);
     border-radius : 8px;
+    outline : none;
+    border : none;
 }
 .reset
 {
     cursor: pointer;
+}
+.btn-submit
+{
+    font-weight: bold;
+    font-size  : 20px;
+    background-color :   rgb(56, 53, 49);
+    border : none;
+    border-radius : 4px;
+    color : rgb(255, 255, 255);
+    height : 40px;
+}
+input[type="date"]
+{
+    border:1px solid   rgba(138, 126, 126, 0.7);
+    border-radius : 8px;
+    background-color : rgba(243, 237, 237, 0.7);
+    height : 30px;
+}
+.btn-submit:hover
+{
+    background-color :  rgba(138, 126, 126, 0.7);
 }
 /* end */

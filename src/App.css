@@ -3,11 +3,12 @@
 
 .container-fluid,
 html {
-  background: #E7E4E7;
+  background: #f8f8f7;
 }
 
 .header {
   background: white;
+  padding : 10px;
 }
 
 .loader

@@ -76,7 +76,7 @@ export default function FilterNews(props) {
                                 className="form-select form-select-lg text-secondry"
                                 onChange={handleChange}
                                 name="language">
-                                <option select="true" value="">select</option>
+                                <option select="true" value="">&nbsp; Select</option>
                                 <option value="en">English</option>
                                 <option value="zh">Chinese</option>
                                 <option value="ar">Arabic</option>
@@ -101,7 +101,7 @@ export default function FilterNews(props) {
                                 className="form-select form-select-lg text-secondry"
                                 name="country"
                                 onChange={handleChange}>
-                                <option select="true" value="">select</option>
+                                <option select="true" value="">&nbsp; Select</option>
                                 <option value="ASIA">Asia</option>
                                 <option value="EU">Europe</option>
                                 <option value="INT">International</option>
@@ -198,8 +198,8 @@ export default function FilterNews(props) {
                         </div>
                         <div className="form-group">
                         {/* show lastest button  */}
-                            <Button type="submit" className="btn-primary btn-submit"
-                                onClick={handleClick}>Show News</Button>
+                            <button type="submit" className="btn-submit"
+                                onClick={handleClick}>Show News</button>
                         </div>
                     </form>
                 </div>

@@ -21,7 +21,7 @@ function NewsFeed(props) {              // function to render the newsfeed
                     <div className="text-muted mb-2">           {/* author name && date */}
                         <span className="author-name"> {newsCard.author} </span>
                         <span>&nbsp;|&nbsp;</span>
-                        <span className="publish-date">{newsCard.published}</span>
+                        <span className="publish-date">{newsCard.published.slice(0 , 19)}</span>
                     </div>
 
                     <div className="image">                             {/* image for news*/}
@@ -31,7 +31,7 @@ function NewsFeed(props) {              // function to render the newsfeed
                         <div className="pl-3 right">
                             <p className="news-description">{newsCard.description} </p>     {/* news  description*/}
                             <p className="links">
-                                <span className="reference">Reference</span>
+                                <span className="reference">Referrence</span>
                                 <br/>
                                 <a href={newsCard.url}>{newsCard.url} </a>
                             </p>
