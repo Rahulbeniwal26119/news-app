@@ -1,7 +1,6 @@
 import './NewsFeed.css'; // style sheet for NewsFeed
 
 function NewsFeed(props) {
-    console.log(props.newsData)
     if (props.newsData.length) {
 
         var newsData = props.newsData;

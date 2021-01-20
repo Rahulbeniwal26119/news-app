@@ -6,7 +6,6 @@ export default function Header(props)  /// exporting Header component
 {
     function onClickHandler()
     {
-        console.log("clicked");
         props.latestNews();
     }
 return (
