@@ -1,9 +1,13 @@
 /* Setting background color for components and background */
-.container-fluid , html
-{
-    background: rgb(231, 231, 228);
+/* start */
+
+.container-fluid,
+html {
+  background: rgb(231, 231, 228);
 }
-.header 
-{
-    background: white;
+
+.header {
+  background: white;
 }
+
+/* end */

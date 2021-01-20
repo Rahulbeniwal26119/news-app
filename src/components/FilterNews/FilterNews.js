@@ -1,15 +1,20 @@
-import './FilterNews.css';
-import {Button} from 'reactstrap'
-import {useState} from 'react';
-// component for filtering news
-export default function FilterNews(props) {
-    var [language, setLanguage] = useState("");
-    var [country, setCountry] = useState("");
-    var [startDate, setStartDate] = useState("");
-    var [endDate, setEndDate] = useState("");
-    var [overWrite, setOverWrite] = useState(false);
+import './FilterNews.css';               // stylesheet for FilterNews
+import {Button} from 'reactstrap';      // Button component imported from reactstrap
+import {useState} from 'react';        // useState hook for maintaining state in functional components
 
+                // component for filtering news     
+export default function FilterNews(props) {
+
+    var [language, setLanguage] = useState("");                  // state for language selected
+    var [country, setCountry] = useState("");                   // state for country selectd
+    var [startDate, setStartDate] = useState("");              // state for startDate selected
+    var [endDate, setEndDate] = useState("");                 // state for EndDate  selected
+    var [overWrite, setOverWrite] = useState(false);         // this is special state for overwrite
+                                                            //  all state value if GetLatest button pressed 
+    
     function handleChange(e) {
+        // this funtion handles the change happening in filter news forms 
+        
         var value = e.target.value;
         if (e.target.name === "language") 
             setLanguage(value)
@@ -19,38 +24,54 @@ export default function FilterNews(props) {
             setStartDate(value)
          else if (e.target.name === "endDate") 
             setEndDate(value)
-
-
-        
-
-
     }
 
     function handleClick(e) {
-        setOverWrite(true);
-        e.preventDefault();
-        props.getOptions(language, country, startDate, endDate)
-        props.reRender(country, language, startDate, endDate);
+        // this function fires if Show News button is pressed
+
+        // check if reset button is pressed
+        if(e.target.getAttribute("name") === "reset")  
+        {
+            setLanguage("")
+            setCountry("")
+            setStartDate("")
+            setEndDate("")
+        }
+         // check if show latest button is pressed then refresh news feed 
+        else              
+        {
+                setOverWrite(true);                    
+                e.preventDefault();   // stop the form submission 
+                props.setAppState(language, country, startDate, endDate) // it sets the state of App component
+                props.reRender(country, language, startDate, endDate);   // it instruct the App component to 
+        }                                                                //render newsfeed according to options selected
     }
-    if (props.buttonStatus && overWrite) {
-        setOverWrite(false);
-        setLanguage("")
+
+    // setting the values of all state variable to "" 'if Get Latest News' button is pressed
+
+    if (props.buttonStatus && overWrite) {   
+        setOverWrite(false);                //making overWrite to false to insure 
+        setLanguage("")                     //that this it will only run once on one click
         setCountry("")
         setStartDate("")
         setEndDate("")
 
     }
-    return (<div className="news-div mt-4 ml-0"> {/* filter news card*/}
+
+
+    return (
+    <div className="news-div mt-4 ml-0">            {/* filter news card component*/}
         <div className="card">
             <div className="content">
-                <div className="head">
+                <div className="head">              {/* top component showing filter news and reset button*/}
                     <h5>Filter News</h5>
-                    <p>Reset</p>
+                    <p onClick={handleClick} className="reset" name="reset">Reset</p>
                 </div>
                 <div className="form">
                     <form>
                         <div className="form-group">
-                            <label htmlFor="" className="col-form-label text-secondary">Language</label>
+                        {/* select box for set language  */}
+                            <label className="col-form-label text-secondary">Language</label>
                             <select value={language}
                                 className="form-select form-select-lg text-secondry"
                                 onChange={handleChange}
@@ -74,6 +95,7 @@ export default function FilterNews(props) {
                             </select>
                         </div>
                         <div className="form-group mt-0">
+                        {/* select box for select country */}
                             <label className="col-form-label text-secondary">Country</label>
                             <select value={country}
                                 className="form-select form-select-lg text-secondry"
@@ -104,8 +126,7 @@ export default function FilterNews(props) {
                                 <option value="AT">Austria</option>
                                 <option value="PT">Portugal</option>
                                 <option value="PH">Philippines</option>
-                                <option value="HK">Hong Kong
-                                </option>
+                                <option value="HK">Hong Kong</option>
                                 <option value="AR">Argentina</option>
                                 <option value="VE">Venezuela</option>
                                 <option value="BR">Brazil</option>
@@ -164,16 +185,19 @@ export default function FilterNews(props) {
                             </select>
                         </div>
                         <div className="form-group ">
+                        {/* field to select optional startdate field */}
                             <label htmlFor="" className="col-form-label text-secondary" name="startDate">Start Date</label>
                             <input type="date" value={startDate} className="custom-select-sm" name="startDate"
                                 onChange={handleChange}/>
                         </div>
                         <div className="form-group">
+                        {/* field to select optional endDate field  */}
                             <label htmlFor="" className="col-form-label text-secondary">End Date</label><br/>
                             <input type="date" value={endDate} className="custom-select-sm" name="endDate"
                                 onChange={handleChange}/>
                         </div>
                         <div className="form-group">
+                        {/* show lastest button  */}
                             <Button type="submit" className="btn-primary btn-submit"
                                 onClick={handleClick}>Show News</Button>
                         </div>

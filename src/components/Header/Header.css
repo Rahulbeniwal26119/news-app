@@ -1,13 +1,10 @@
-/* show latest news button */
+/* show latest news button style */
+
 #refresh-button   
 {
     background-color : rgb(56, 53, 49);
     font-family: serif;
     font-size : 15px;
 }
-.button 
-{
-    /* position: fixed; */
 
-}
 /* end  */

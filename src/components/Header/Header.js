@@ -1,4 +1,4 @@
-// It shows the heading of new-app i.e. Create Latest News button 
+// It shows the heading of news-app i.e. "Show Latest News" button 
 
 import {Button} from 'reactstrap';  // button component 
 import './Header.css';

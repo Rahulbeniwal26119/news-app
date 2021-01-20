@@ -1,9 +1,10 @@
-/* Styling card start  */
+
+/* style for filter news component */
+/* start */
 .card
 {
    width: 250px;
 }
-
 
 .content {
     padding : 10px 10px 0 10px ;
@@ -28,7 +29,6 @@
     color : blue;
 
 }
-/* END */
 .select-box , label
 {
     font-family: serif;
@@ -52,7 +52,8 @@ select
     background : rgba(179, 174, 174 , 0.7);
     border-radius : 8px;
 }
-.news-div
+.reset
 {
-    /* position: fixed; */
+    cursor: pointer;
 }
+/* end */
