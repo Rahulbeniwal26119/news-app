@@ -2,6 +2,7 @@ import React from 'react';
 import {Header, FilterNews, NewsFeed} from './components'
 import './App.css';
 import axios from 'axios';
+
 class App extends React.Component {
     constructor() {
         super();
@@ -12,9 +13,9 @@ class App extends React.Component {
             endDate: "",
             fetchNews: []
         }
-        this.loading = true;
-        this.getLatestPressed = false;
-        this.urlToken = "c8yIkB0OIX63tq8LKVpnmul0QhAKsxkwJLzKOYbe5GukV6W9";
+        this.loading = true
+        this.getLatestPressed = false
+        this.urlToken = "c8yIkB0OIX63tq8LKVpnmul0QhAKsxkwJLzKOYbe5GukV6W9"
         this.url = ``
     }
 
@@ -25,7 +26,6 @@ class App extends React.Component {
         }`;
         axios.get(this.url).then(response => {
             this.setState(prevState => {
-
                 return {
                     language: "",
                     country: "",
@@ -48,9 +48,16 @@ class App extends React.Component {
     }
 
 
-    getNews = (country, language) => { // https://api.currentsapi.services/v1/latest-news?apiKey=${this.urlToken}`
+    getNews = (country, language , startDate , endDate) => {
+
+        if(startDate)
+        startDate = startDate+"T00:00:00+00:00";
+        if(endDate)
+        endDate = endDate+"T00:00:00+00:00";
         this.getLatestPressed = false;
-        this.url = `https://api.currentsapi.services/v1/search?country=${country}&language=${language}&apiKey=${
+this.url = `https://api.currentsapi.services/v1/search?country=${country}&language=${language}&start_date=${startDate}&end_date=${endDate}&apiKey=${
+
+
             this.urlToken
         }`;
         axios.get(this.url).then(response => {
@@ -60,13 +67,13 @@ class App extends React.Component {
                     country: prevState.country,
                     startDate: prevState.startDate,
                     endDate: prevState.endDate,
-                    fetchedNews: response.data.news
+                    fetchedNews: response.data.news,
                 }
             })
         })
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         this.getLatest();
         this.loading = false;
     }
