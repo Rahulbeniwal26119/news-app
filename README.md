@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# news-app 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with react and reactstrap.
 
-## Available Scripts
+## It load latest news on page reaload 
 
 In the project directory, you can run:
 
