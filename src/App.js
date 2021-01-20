@@ -24,11 +24,40 @@ class App extends React.Component {
         this.url = ``                   // url to fetch data 
     }
 
-    // this function fetchs the latest news 
+    // this function fetchs the latest news on load first time 
+    getNewsOnLoad = ()=>{
+        this.url = `https://api.currentsapi.services/v1/latest-news?apiKey=${this.urlToken}`;
+        axios.get(this.url).then(response => {
+            this.loading = false;
+            this.setState(prevState => {
+                return {
+                    language: "",
+                    country: "",
+                    startDate: "",
+                    endDate: "",
+                    fetchedNews: response.data.news         // make other state to ""
+                }
+            })
+        })
+    }
+
+    // this function fetchs the latest news of button press
     getLatest = () => {
+        //remove all the news and prestored data of all state 
+         this.setState(prevState => {
+                return {
+                    language: "",
+                    country: "",
+                    startDate: "",
+                    endDate: "",
+                    fetchedNews: ""         
+                }
+            })
+        this.loading = true;
         this.getLatestPressed = true;
         this.url = `https://api.currentsapi.services/v1/latest-news?apiKey=${this.urlToken}`;
         axios.get(this.url).then(response => {
+            this.loading = false;
             this.setState(prevState => {
                 return {
                     language: "",
@@ -71,6 +100,7 @@ class App extends React.Component {
 
     // get the news based on the selected option on the FilterNews Component 
     getNews = (country, language, startDate, endDate) => {
+        this.loading = true;
         if (startDate) 
             startDate = startDate + "T00:00:00+00:00";  // change the date to required format 
         
@@ -80,6 +110,7 @@ class App extends React.Component {
         this.getLatestPressed = false;
         this.url = `https://api.currentsapi.services/v1/search?country=${country}&language=${language}&start_date=${startDate}&end_date=${endDate}&apiKey=${this.urlToken}`;
         axios.get(this.url).then(response => {
+                    this.loading = false;
             this.setState(prevState => {
                 return {
                     language: prevState.language,
@@ -94,7 +125,7 @@ class App extends React.Component {
     
     //show the loading animation and latest news on page load 
     componentDidMount() {
-        this.getLatest();
+        this.getNewsOnLoad();
         this.loading = false;
     }
 
@@ -119,8 +150,8 @@ class App extends React.Component {
                         this.loading
                         ?          // if loading is true then render the loading animation
 
-                         <div height="15" width="20" className="mt-4">
-                            <img src={require("./components/loading.svg").default}alt=""/>
+                         <div className="loader mt-4">
+                            <img src={require("./components/loading.svg").default} alt=""/>
                         </div>
                         :         // if loading is false render the news cards
                             <NewsFeed 

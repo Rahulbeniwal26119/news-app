@@ -3,11 +3,18 @@
 
 .container-fluid,
 html {
-  background: rgb(231, 231, 228);
+  background: #E7E4E7;
 }
 
 .header {
   background: white;
+}
+
+.loader
+{
+    width : 700px;
+    text-align: center;
+    height : 100%;
 }
 
 /* end */
