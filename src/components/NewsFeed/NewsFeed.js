@@ -12,7 +12,6 @@ function NewsFeed(props) {              // function to render the newsfeed
         var newsCard = newsData.map((newsCard , index) => {
             return (
                 <div key={newsCard.id} className="news-card-element mt-4">         {/* news card component  */}
-
                     <div className="news-title">                                     
                         <p> {newsCard.title} </p>                                   {/* news card title*/}
                         <p className="cross" onClick={()=>onClickHandler(index)}>&times;</p>        {/* cross symbol*/} 
@@ -25,9 +24,12 @@ function NewsFeed(props) {              // function to render the newsfeed
                     </div>
 
                     <div className="image">                             {/* image for news*/}
-                        <div className="left-image">
+                    {
+                        
+                        newsCard.image ?                         <div className="left-image">
                             <img src={newsCard.image}  alt="news-logo"></img>
-                        </div>
+                        </div> : <div className="d-none"> </div>
+                    }
                         <div className="pl-3 right">
                             <p className="news-description">{newsCard.description} </p>     {/* news  description*/}
                             <p className="links">
