@@ -74,7 +74,7 @@ function onClickHandler(index) {
             {/* news card component  */}
             <div className="news-title">
                 <p>
-                    no news found for this selected Country and Language , Try other combination
+                    no news found for this selected combination  , Try other combination or press Get Latest Button for Latest News
                 </p>
             </div>
         </div>

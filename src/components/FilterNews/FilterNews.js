@@ -56,11 +56,9 @@ export default function FilterNews(props) {
                                 onChange={handleChange}
                                 name="language">
                                 <option select="true" value="">select</option>
-                                <option value="hi">Hindi</option>
                                 <option value="en">English</option>
                                 <option value="zh">Chinese</option>
                                 <option value="ar">Arabic</option>
-                                <option value="zh">Chinese</option>
                                 <option value="nl">Dutch</option>
                                 <option value="fi">Finnish</option>
                                 <option value="fr">French</option>
