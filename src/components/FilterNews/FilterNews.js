@@ -1,5 +1,4 @@
 import './FilterNews.css';               // stylesheet for FilterNews
-import {Button} from 'reactstrap';      // Button component imported from reactstrap
 import {useState} from 'react';        // useState hook for maintaining state in functional components
 
                 // component for filtering news     

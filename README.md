@@ -10,6 +10,7 @@ This project was created with react and reactstrap.
 
  <img align="left" alt="loading animation" src="https://github.com/Rahulbeniwal26119/news-app/blob/master/public/screenshots/loadinganimation.png">
 
+
  ## When there is no news avilaible it show this error message
 
  <img align="left" alt="no-news" src="https://github.com/Rahulbeniwal26119/news-app/blob/master/public/screenshots/error.png">
