@@ -37,6 +37,24 @@ class App extends React.Component {
         })
     }
 
+    removeNewsFeed = (index) => {
+        console.log(index);
+        if (this.state.fetchedNews) { // console.log(this.state.fetchedNews[index]);
+            this.setState(prevState => {
+                prevState.fetchedNews.splice(index, 1);
+                var fetchedNewsUpdated = prevState.fetchedNews;
+                return {
+                    language: prevState.language,
+                    country: prevState.country,
+                    startDate: prevState.startDate,
+                    endDate: prevState.endDate,
+                    fetchedNews: fetchedNewsUpdated
+                }
+            })
+            console.log(this.state.fetchedNews);
+        }
+    }
+
     getOptions = (language, country, startDate, endDate) => {
         this.setState({
             language: language,
@@ -48,14 +66,18 @@ class App extends React.Component {
     }
 
 
-    getNews = (country, language , startDate , endDate) => {
+    getNews = (country, language, startDate, endDate) => {
 
-        if(startDate)
-        startDate = startDate+"T00:00:00+00:00";
-        if(endDate)
-        endDate = endDate+"T00:00:00+00:00";
+        if (startDate) 
+            startDate = startDate + "T00:00:00+00:00";
+        
+
+        if (endDate) 
+            endDate = endDate + "T00:00:00+00:00";
+        
+
         this.getLatestPressed = false;
-this.url = `https://api.currentsapi.services/v1/search?country=${country}&language=${language}&start_date=${startDate}&end_date=${endDate}&apiKey=${
+        this.url = `https://api.currentsapi.services/v1/search?country=${country}&language=${language}&start_date=${startDate}&end_date=${endDate}&apiKey=${
 
 
             this.urlToken
@@ -67,7 +89,7 @@ this.url = `https://api.currentsapi.services/v1/search?country=${country}&langua
                     country: prevState.country,
                     startDate: prevState.startDate,
                     endDate: prevState.endDate,
-                    fetchedNews: response.data.news,
+                    fetchedNews: response.data.news
                 }
             })
         })
@@ -79,47 +101,44 @@ this.url = `https://api.currentsapi.services/v1/search?country=${country}&langua
     }
 
     render() {
-        return (
-            <div className="container-fluid app">
-                {/*  creating a layout of ui */}
-                <div className="row header">
-                    <div className="offset-md-2">
-                        <Header latestNews={
-                                this.getLatest
+        return (<div className="container-fluid app"> {/*  creating a layout of ui */}
+            <div className="row header">
+                <div className="offset-md-2">
+                    <Header latestNews={
+                            this.getLatest
+                        }
+                        buttonStatus={
+                            this.getLatestPressed
+                        }/> {/* aligning show latest news button*/} </div>
+            </div>
+            <div className="">
+                <div className="row">
+                    <div className="filterNews offset-md-2">
+                        <FilterNews getOptions={
+                                this.getOptions
+                            }
+                            reRender={
+                                this.getNews
                             }
                             buttonStatus={
                                 this.getLatestPressed
-                            }/> {/* aligning show latest news button*/} </div>
-                </div>
-                <div className="">
-                    <div className="row">
-                        <div className="filterNews offset-md-2">
-                            <FilterNews getOptions={
-                                    this.getOptions
-                                }
-                                reRender={
-                                    this.getNews
-                                }
-                                buttonStatus={
-                                    this.getLatestPressed
-                                }/> {/* aligning filter news and Newsfeed component side by side */} </div>
-                        <div className="newsCard ml-sm-5 ">
-                            {
-                            this.loading ? <div height="15" width="20" className="mt-4">
-                                <img src={
-                                        require("./components/loading.svg").default
-                                    }
-                                    alt=""/>
-                            </div> : <NewsFeed newsData={
-                                this.state.fetchedNews ? this.state.fetchedNews : ""
+                            }/> {/* aligning filter news and Newsfeed component side by side */} </div>
+                    <div className="newsCard ml-sm-5 ">
+                     {
+                        this.loading ?
+                         <div height="15" width="20" className="mt-4">
+                            <img src={require("./components/loading.svg").default}alt=""/>
+                        </div> :
+                            <NewsFeed removeNews={this.removeNewsFeed} newsData={
+                            this.state.fetchedNews ? this.state.fetchedNews : ""
                             }/>
                         } </div>
-                    </div>
                 </div>
             </div>
+        </div>
         );
     }
-
-}
-
-export default App;
+        
+        }
+        
+        export default App;
