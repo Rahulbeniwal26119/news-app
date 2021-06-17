@@ -1,6 +1,6 @@
 # news-app 
 
-##Live : [News Web App](https://eloquent-carson-45027f.netlify.app/)
+## Live : [News Web App](https://eloquent-carson-45027f.netlify.app/)
 
 ## It loads latest news on page reaload.
 
